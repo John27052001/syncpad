@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dark theme */
+  --surface: 222 18% 10%;
+  --surface-hover: 222 18% 14%;
+  --surface-border: 222 12% 22%;
+  --accent: 270 80% 55%;
+  --muted: 220 10% 46%;
+  --foreground: 0 0% 98%;
+  --foreground-muted: 220 10% 65%;
+}
+
+[data-theme='light'] {
+  --surface: 0 0% 99%;
+  --surface-hover: 220 18% 96%;
+  --surface-border: 220 16% 88%;
+  --accent: 270 75% 46%;
+  --muted: 220 10% 46%;
+  --foreground: 222 18% 12%;
+  --foreground-muted: 222 10% 40%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply text-[hsl(var(--foreground))] antialiased;
+  background:
+    radial-gradient(1200px 700px at 15% 0%, hsl(var(--accent) / 0.18), transparent 60%),
+    radial-gradient(900px 600px at 85% 10%, hsl(200 80% 55% / 0.10), transparent 55%),
+    hsl(var(--surface));
+}
+
+/* Editor content area */
+.editor-content {
+  @apply min-h-[60vh] w-full resize-none border-0 bg-transparent p-6 text-[15px] leading-relaxed outline-none placeholder:text-[hsl(var(--foreground-muted))];
+}
+
+.editor-content:focus {
+  outline: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-[hsl(var(--surface-border))];
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[hsl(var(--muted))];
+}
+
+::selection {
+  background: hsl(var(--accent) / 0.25);
+}
+
+/* TipTap base styles */
+.tiptap {
+  @apply p-6 text-[15px] leading-relaxed;
+}
+
+.tiptap :first-child {
+  margin-top: 0;
+}
+
+.tiptap p {
+  @apply my-3;
+}
+
+.tiptap h1 {
+  @apply mt-6 mb-3 text-3xl font-semibold tracking-tight;
+}
+
+.tiptap h2 {
+  @apply mt-6 mb-3 text-2xl font-semibold tracking-tight;
+}
+
+.tiptap ul {
+  @apply my-3 list-disc pl-6;
+}
+
+.tiptap ol {
+  @apply my-3 list-decimal pl-6;
+}
+
+.tiptap blockquote {
+  @apply my-4 border-l-2 border-surface-border pl-4 text-[hsl(var(--foreground-muted))];
+}
+
+.tiptap code {
+  @apply rounded bg-black/20 px-1 py-0.5 text-[13px];
+}
+
+.tiptap pre {
+  @apply my-4 overflow-auto rounded-xl border border-surface-border bg-black/30 p-4 text-[13px];
+}
+
+.tiptap pre code {
+  @apply bg-transparent p-0;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: hsl(var(--foreground-muted));
+  pointer-events: none;
+  height: 0;
+}
