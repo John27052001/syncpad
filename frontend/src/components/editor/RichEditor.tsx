@@ -44,7 +44,7 @@ export function RichEditor({ value, onChange, placeholder, className }: RichEdit
     if (!editor) return;
     if (value === lastExternalValue.current) return;
     lastExternalValue.current = value;
-    editor.commands.setContent(value || '<p></p>', false);
+    editor.commands.setContent(value ? value : '<p></p>');
   }, [value, editor]);
 
   if (!editor) return null;
