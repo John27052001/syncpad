@@ -25,8 +25,7 @@ export class DocumentsGateway
   implements OnGatewayConnection, OnGatewayDisconnect
 {
   @WebSocketServer()
-  server: Server;
-
+private server!: any;
   private roomClients: Map<string, Set<string>> = new Map();
 
   constructor(private readonly documentsService: DocumentsService) {}
